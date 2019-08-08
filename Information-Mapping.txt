@@ -1,0 +1,28 @@
+1.URL Mapping To create Short URL
+Mrthod: GET
+URL Example: http://localhost:8086/createShortURL?bigURL=https://found.ee/super
+Response:  http://localhost:8086/b
+
+2.URL MApping To Redirect to Original Big URL
+Method: GET
+URL Example: http://localhost:8086/b
+Response: Will be ridected to actual page
+
+If some other service is consuming the 2nd service than code for that consumer is
+
+@GetMapping(value = "/redirect")
+	public ResponseEntity<ResponseEntity> redirect(HttpServletRequest request) {
+
+		try {
+
+			RestTemplate restTemplate = new RestTemplate();
+			ResponseEntity<ResponseEntity> temp = restTemplate
+					.getForEntity("http://localhost:8084/urlShortener/redirect", ResponseEntity.class);
+			return temp;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
+	}
