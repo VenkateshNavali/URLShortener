@@ -1,0 +1,8 @@
+
+To run on port 8086
+---------------------------
+java -Dresponse.Url.format=http://localhost:8086/  -jar URLShortener-0.0.1-SNAPSHOT.jar
+
+To run on some other port : PORT
+---------------------------
+java -Dserver.port=PORT -Dresponse.Url.format=http://localhost:PORT/  -jar URLShortener-0.0.1-SNAPSHOT.jar

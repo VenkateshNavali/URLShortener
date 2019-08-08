@@ -1,0 +1,17 @@
+Algorithm I used for shortening is as follows:
+Given the limitations over the characters which can be used in a url it becomes pretty much obvious that we are limited to 62 alpha numeric chars i.e. [a-z 0-9 A-Z].
+Though - (hyphen) and _ (underscore) are allowed in a url but a Url looks bad like http://xyz.com/c0--rw_ or http://xyz.com/______-.
+Following is the simple implementation of base10 to base62 converter, that's all we need to shorten a url. With 62 chars and a unique string 7 char long we can shorten:
+62 power of 7 = 3,521,614,606,208 urls
+
+How shortening works in the present case:
+
+Suppose you have a table with following columns: 
+1. unique id (long), 
+2.baseValue string (string)
+3.BigUrl (string), 
+Now the trick is that we convert unique id to base62 string not the url, and then the url is mapped to the unique id. 
+For example if we want to shorten the following url: https://found.ee/super
+First we need to look for the last unique id in the table then add 1 to it and convert the resulting number to base62. 
+Suppose last unique id was 678544325 now the next id 678544326 will be mapped to the above url and base62 of a 678544326 will be:JVgxu
+and every bigUrl is saved along with this baseValue and while fetching this value is used.
